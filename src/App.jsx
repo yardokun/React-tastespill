@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import autumnList from "./data/Høst.json";
+import HighScore from "./components/HighScore";
+import Game from "./components/Game";
+import GameStart from "./components/GameStart";
 
 const App = () => {
   const words = autumnList.ord;
 
-  function getRandomWord(wordList) {
+  const getRandomWord = (wordList) => {
     const index = Math.floor(Math.random() * wordList.length);
     return wordList[index];
-  }
+  };
 
-  function shuffle(array) {
+  const shuffle = (array) => {
     let currentIndex = array.length,
       randomIndex;
     while (currentIndex !== 0) {
@@ -22,7 +25,7 @@ const App = () => {
       ];
     }
     return array;
-  }
+  };
 
   const [userName, setUserName] = useState("");
   const [isGameStarted, setIsGameStarted] = useState(false);
@@ -30,7 +33,7 @@ const App = () => {
   const [randomWord, setRandomWord] = useState("");
   const [indexWord, setIndexWord] = useState(0);
   const [score, setScore] = useState(0);
-  const [remainingTime, setRemainingTime] = useState(120); // 2 minutes in seconds
+  const [remainingTime, setRemainingTime] = useState(3); // 2 minutes in seconds
   const [remainingWords, setRemainingWords] = useState(shuffle([...words]));
   const [deductions, setDeductions] = useState(0);
   const [consecutiveCorrectWords, setConsecutiveCorrectWords] = useState(0);
@@ -63,10 +66,6 @@ const App = () => {
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
-  };
-
-  const handleUserNameChange = (event) => {
-    setUserName(event.target.value);
   };
 
   const handleStartGame = () => {
@@ -162,79 +161,36 @@ const App = () => {
     }
   }, [remainingTime, userName, score]);
 
-  const formatTime = (time) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-  };
-
   if (remainingTime <= 0) {
     return (
-      <div className="app-wrapper">
-        <div className="center-content">
-          <h1>Highscoreliste</h1>
-          <ol>
-            {highscores.map((entry, index) => (
-              <li key={index}>
-                {entry.name}: {entry.score}
-              </li>
-            ))}
-          </ol>
-          <button onClick={() => setRemainingTime(120)}>Spill igjen</button>
-        </div>
-      </div>
+      <HighScore
+        highscores={highscores}
+        setRemainingTime={() => setRemainingTime(120)}
+      />
     );
   }
 
   if (!isGameStarted) {
     return (
-      <div className="app-wrapper">
-        <div className="center-content">
-          <h1 className="welcome-title">Velkommen til Høst-ordspillet!</h1>
-          <p className="game-instructions">
-            Målet med spillet er å utordre din evne til å skrive raskt og
-            nøyaktig, samtidig som du lærer om temaet høst. Du vil bli
-            presentert med ord og utrykk knyttet til høsten, og du må skrive dem
-            korrekt og raskt innenfor en tidsbegrensning på 2 minutter.
-          </p>
-          <p className="game-instructions r-u-ready">Er du klar?</p>
-          <h2 className="game-instructions-2">
-            Skriv inn navnet ditt under og trykk på "Start spillet"!
-          </h2>
-          <input
-            type="text"
-            placeholder="Skriv navnet ditt her..."
-            value={userName}
-            onChange={handleUserNameChange}
-            onKeyUp={handleNameInputKeyUp}
-          />
-          <button className="start-game-btn" onClick={handleStartGame}>
-            Start spillet
-          </button>
-        </div>
-      </div>
+      <GameStart
+        userName={userName}
+        handleNameInputKeyUp={handleNameInputKeyUp}
+        handleStartGame={handleStartGame}
+        setUserName={(e) => setUserName(e)}
+      />
     );
   }
 
   return (
-    <div className="app-wrapper">
-      <div className="center-content ">
-        <h1>Skynd deg, {userName}!</h1>
-        <h2>Skriv ordet: </h2>
-        <h2>
-          <span className="highlighted-word">{randomWord}</span>
-        </h2>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          onKeyUp={handleKeyUp}
-        />
-        <p>Tast space når du er ferdig!</p>
-        <p>Poengscore: {score}</p>
-        <p>Tid: {formatTime(remainingTime)}</p>
-      </div>
-    </div>
+    <Game
+      userName={userName}
+      handleKeyUp={handleKeyUp}
+      handleInputChange={handleInputChange}
+      randomWord={randomWord}
+      inputValue={inputValue}
+      score={score}
+      remainingTime={remainingTime}
+    />
   );
 };
 

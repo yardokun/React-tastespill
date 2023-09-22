@@ -36,7 +36,7 @@ body {
   border-radius: 5px;
 }
 
-.welcome-title {
+.title {
   margin: 10px;
 }
 
@@ -64,6 +64,7 @@ input {
   border: none;
   border-radius: 15px;
   font-size: 1.2rem;
+  margin-top: 7px;
 }
 
 .start-game-btn {
@@ -78,9 +79,22 @@ input {
   font-size: 1.3rem;
 }
 
+.write-the-word {
+  font-size: 1.6rem;
+  margin: 7px 0 5px 0;
+  font-style: italic;
+  font-weight: normal;
+}
+
 .highlighted-word {
   color: #a9463f;
   font-size: 2rem;
+}
+
+.game-info {
+  margin: 5px;
+  font-size: 1.4rem;
+  font-weight: bold;
 }
 
 ol {
