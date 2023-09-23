@@ -39,6 +39,16 @@ const App = () => {
   const [consecutiveCorrectWords, setConsecutiveCorrectWords] = useState(0);
   const [highscores, setHighscores] = useState([]);
 
+  const resetGame = () => {
+    setRemainingTime(120);
+    setScore(0);
+    setInputValue("");
+    setRandomWord(getRandomWord(shuffle([...words])));
+    setRemainingWords(shuffle([...words]));
+    setIsGameStarted(false);
+    setConsecutiveCorrectWords(0);
+  };
+
   useEffect(() => {
     const savedHighscores = localStorage.getItem("highscores");
     if (savedHighscores) {
@@ -162,12 +172,7 @@ const App = () => {
   }, [remainingTime, userName, score]);
 
   if (remainingTime <= 0) {
-    return (
-      <HighScore
-        highscores={highscores}
-        setRemainingTime={() => setRemainingTime(120)}
-      />
-    );
+    return <HighScore highscores={highscores} resetGame={resetGame} />;
   }
 
   if (!isGameStarted) {

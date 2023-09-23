@@ -1,6 +1,6 @@
 import eikenottImage from "../assets/eikenott.png";
 
-const HighScore = ({ highscores, setRemainingTime }) => {
+const HighScore = ({ highscores, resetGame }) => {
   return (
     <div className="app-wrapper">
       <div className="center-content">
@@ -22,7 +22,7 @@ const HighScore = ({ highscores, setRemainingTime }) => {
             </li>
           ))}
         </ol>
-        <button className="start-game-btn" onClick={setRemainingTime}>
+        <button className="start-game-btn" onClick={resetGame}>
           Spill igjen
         </button>
       </div>

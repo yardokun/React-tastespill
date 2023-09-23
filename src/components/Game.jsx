@@ -28,8 +28,15 @@ const Game = ({
           onKeyUp={handleKeyUp}
         />
         <p className="game-instructions">Tast space når du er ferdig!</p>
-        <p className="game-info">Poengscore: <span className="highlighted-word-2">{score}</span></p>
-        <p className="game-info">Tid: <span className="highlighted-word-2">{formatTime(remainingTime)}</span></p>
+        <p className="game-info">
+          Poengscore: <span className="highlighted-word-2">{score}</span>
+        </p>
+        <p className="game-info">
+          Tid:{" "}
+          <span className="highlighted-word-2">
+            {formatTime(remainingTime)}
+          </span>
+        </p>
       </div>
     </div>
   );
