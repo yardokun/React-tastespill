@@ -27,7 +27,7 @@ const Game = ({
           onChange={handleInputChange}
           onKeyUp={handleKeyUp}
         />
-        <p className="game-instructions">Tast space når du er ferdig!</p>
+        <p className="game-instructions-2">Tast space når du er ferdig!</p>
         <p className="game-info">
           Poengscore: <span className="highlighted-word-2">{score}</span>
         </p>
