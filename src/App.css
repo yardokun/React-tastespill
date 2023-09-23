@@ -97,15 +97,44 @@ input {
   font-weight: bold;
 }
 
+.score-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 ol {
   list-style: none;
   padding-left: 0;
   display: flex;
   flex-direction: column;
+  min-width: 30%;
 }
 
 li {
   font-size: 1.5rem;
-  margin: 10px 0;
+  margin: 20px 0 10px 0;
   font-weight: bold;
+}
+
+.eikenott {
+  width: 40px;
+  height: auto;
+}
+
+.style-name {
+  margin: 0 60px;
+  font-style: italic;
+}
+
+.style-score {
+  font-weight: normal;
+  margin: 0 60px;
+}
+
+.style-name,
+.style-score {
+  margin-left: 20px;
+  margin-right: 20px;
 }
