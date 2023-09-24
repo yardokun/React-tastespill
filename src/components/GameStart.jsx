@@ -13,7 +13,7 @@ const GameStart = ({
       <div className="center-content">
         <h1 className="title">Velkommen til Høst-ord spillet!</h1>
         <p className="game-instructions">
-          Målet med spillet er å utordre din evne til å skrive raskt og
+          Målet med spillet er å utfordre din evne til å skrive raskt og
           nøyaktig, samtidig som du lærer om temaet høst. Du vil bli presentert
           med ord og utrykk knyttet til høsten, og du må skrive dem korrekt og
           raskt innenfor en tidsbegrensning på 2 minutter.
