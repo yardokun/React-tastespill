@@ -33,7 +33,7 @@ const App = () => {
   const [randomWord, setRandomWord] = useState("");
   const [indexWord, setIndexWord] = useState(0);
   const [score, setScore] = useState(0);
-  const [remainingTime, setRemainingTime] = useState(3); // 2 minutes in seconds
+  const [remainingTime, setRemainingTime] = useState(120); // 2 minutes in seconds
   const [remainingWords, setRemainingWords] = useState(shuffle([...words]));
   const [deductions, setDeductions] = useState(0);
   const [consecutiveCorrectWords, setConsecutiveCorrectWords] = useState(0);
